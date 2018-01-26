@@ -1,20 +1,16 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="Fuyao-Jiang"><link rel="alternative" href="/atom.xml" title="姜富耀 | BlockChain" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Ubuntu 区块链开发go语言，Node.js，truffle环境搭建 - 姜富耀 | BlockChain</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0;"><header class="head"><h1 class="head-title u-fl"><a href="/">姜富耀 | BlockChain</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">☯ DIR'/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-01-26T12:37:26.000Z">一月 26, 2018</time><h1 class="post__title"><a href="/2018/01/26/Ubuntu-区块链开发go语言，Node-js，truffle环境搭建/">Ubuntu 区块链开发go语言，Node.js，truffle环境搭建</a></h1><div class="post__main echo"><blockquote>
 <p>区块链开发一般在Linux和 Mac OS下进行。<br>虚拟机安装或者双系统的教程 谷哥度娘都有很多详细的教程，不锦上添花。<br>Go语言很适合开发区块链后端，砍柴需要需要先磨刀，学习开发区块链从学习Go开始是一个很好的选择。</p>
-<blockquote>
-<blockquote>
-<p>###So… Go起！</p>
+<p>#So… Go起！</p>
+</blockquote>
 <p>#Golang install:<br><a href="https://www.golangtc.com/download" target="_blank" rel="noopener">https://www.golangtc.com/download</a><br>根据操作系统下载对应的软件包</p>
-<p>###解压<br><code>$ tar -C /usr/local -zxf go1.3.3.linux-amd64.tar.gz</code></p>
+<p>##解压<br><code>$ tar -C /usr/local -zxf go1.3.3.linux-amd64.tar.gz</code></p>
 <h2 id="Golang-environment-Go语言环境"><a href="#Golang-environment-Go语言环境" class="headerlink" title="Golang environment(Go语言环境)"></a>Golang environment(Go语言环境)</h2><p>设置环境变量<br>（1）打开配置文件<br>运行以下命令:<br><code>$ gedit ~/.bashrc</code></p>
-</blockquote>
-</blockquote>
-</blockquote>
 <p>（2）添加命令</p>
 <blockquote>
 <p>在文件尾部添加以下命令：<br><code>export PATH=$PATH:/usr/local/go/bin</code><br><code>export GOPATH=/home/gopath</code></p>
 </blockquote>
 <p>（3）命令生效<br><code>$ source ~/.bashrc</code></p>
-<p>###测试Go语言环境</p>
+<p>##测试Go语言环境</p>
 <blockquote>
 <p>在终端中运行Go命令：<br><code>$ go或$ go version</code></p>
 <p>#Golang IDE:<br>根据自己的喜好选择IDE，推荐Atom，酸爽，插件很赞。</p>

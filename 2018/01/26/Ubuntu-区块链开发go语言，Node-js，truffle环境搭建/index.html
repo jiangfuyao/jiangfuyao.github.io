@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="Fuyao-Jiang"><link rel="alternative" href="/atom.xml" title="姜富耀 | BlockChain" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Ubuntu 区块链开发go语言，Node.js，truffle环境搭建 - 姜富耀 | BlockChain</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0;"><header class="head"><h1 class="head-title u-fl"><a href="/">姜富耀 | BlockChain</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">☯ DIR'/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-01-26T12:37:26.000Z">一月 26, 2018</time><h1 class="post__title"><a href="/2018/01/26/Ubuntu-区块链开发go语言，Node-js，truffle环境搭建/">Ubuntu 区块链开发go语言，Node.js，truffle环境搭建</a></h1><div class="post__main echo"><blockquote>
+<p>区块链开发一般在Linux和 Mac OS下进行。<br>虚拟机安装或者双系统的教程 谷哥度娘都有很多详细的教程，不锦上添花。<br>Go语言很适合开发区块链后端，砍柴需要需要先磨刀，学习开发区块链从学习Go开始是一个很好的选择。</p>
+<blockquote>
+<blockquote>
+<p>###So… Go起！</p>
+<p>#Golang install:<br><a href="https://www.golangtc.com/download" target="_blank" rel="noopener">https://www.golangtc.com/download</a><br>根据操作系统下载对应的软件包</p>
+<p>###解压<br><code>$ tar -C /usr/local -zxf go1.3.3.linux-amd64.tar.gz</code></p>
+<h2 id="Golang-environment-Go语言环境"><a href="#Golang-environment-Go语言环境" class="headerlink" title="Golang environment(Go语言环境)"></a>Golang environment(Go语言环境)</h2><p>设置环境变量<br>（1）打开配置文件<br>运行以下命令:<br><code>$ gedit ~/.bashrc</code></p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>（2）添加命令</p>
+<blockquote>
+<p>在文件尾部添加以下命令：<br><code>export PATH=$PATH:/usr/local/go/bin</code><br><code>export GOPATH=/home/gopath</code></p>
+</blockquote>
+<p>（3）命令生效<br><code>$ source ~/.bashrc</code></p>
+<p>###测试Go语言环境</p>
+<blockquote>
+<p>在终端中运行Go命令：<br><code>$ go或$ go version</code></p>
+<p>#Golang IDE:<br>根据自己的喜好选择IDE，推荐Atom，酸爽，插件很赞。</p>
+<p>##Sublime<br><a href="http://www.sublimetext.com/" target="_blank" rel="noopener">Sublime官网</a></p>
+<p>搜索并安装goSublime插件<br>crtl+b可以调出命令行，来编译执行go代码</p>
+<p>##LiteIDE<br><a href="https://sourceforge.net/projects/liteide/files/" target="_blank" rel="noopener">下载地址</a><br>下载的文件是liteidex30.2.linux64-qt4.tar.bz2（不同操作系统版本其文件名可能不同）。</p>
+<p>####解压缩安装<br>将LiteIDE软件安装到目录/opt下。<br>需要使用以下命令，以root权限打开文件管理器：<br><code>$ sudo nautilus</code></p>
+<p>将下载的文件liteidex30.2.linux64-qt4.tar.bz2拷贝到目录/opt下，然后解压缩（提取）该文件。此时会生成目录/opt/liteide。LiteIDE软件在该目录中。<br>上述操作完毕后，将文件liteidex30.2.linux64-qt4.tar.bz2删除。</p>
+<p>####运行LiteIDE<br>点击/opt/liteide/bin/liteide即可运行LiteIDE软件。</p>
+<p><a href="https://github.com/josephspurrier/liteide-material" target="_blank" rel="noopener">推荐一个不错的暗色主题 : ) </a></p>
+</blockquote>
+<p>##Atom<br><a href="https://atom.io/" target="_blank" rel="noopener">官网下载地址</a><br>下载安装Atom。</p>
+<p>#####Atom实用插件</p>
+<blockquote>
+<p>go-plus Go语言插件<br>autocomplete-solidity代码自动补齐<br>linter-solium、linter-solidity代码错误检查<br>language-ethereum支持Solidity代码高亮以及Solidity代码片段<br>Chinese(Simplified) Menu 两个汉化插件<br>file-icons  文件图标</p>
+</blockquote>
+<p>#Node.js install</p>
+<blockquote>
+<p>开发Solidity以太坊智能合约时，安装truffle框架时得先安装Node.js</p>
+<p><a href="https://nodejs.org/zh-cn/download/" target="_blank" rel="noopener">官网下载</a><br>简单说就是解压后，在bin文件夹中已经存在node以及npm，如果你进入到对应文件的中执行命令行一点问题都没有，不过不是全局的，所以将这个设置为全局就好了。<br> <code>cd node-v0.10.28-linux-x64/binls./node -v</code></p>
+</blockquote>
+<p>这就妥妥的了，node文件夹具体放在哪，叫什么名字随你怎么定。然后设置全局：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s /home/kun/mysofltware/node-v0.10.28-linux-x64/bin/node /usr/local/bin/node</span><br><span class="line">ln -s /home/kun/mysofltware/node-v0.10.28-linux-x64/bin/npm /usr/local/bin/npm</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>这里/home/kun/mysofltware/这个路径是你自己放的，你将node文件解压到哪里就是哪里。</p>
+</blockquote>
+<h1 id="Truffle-ether-testrpc-Intall"><a href="#Truffle-ether-testrpc-Intall" class="headerlink" title="Truffle ether-testrpc Intall"></a>Truffle ether-testrpc Intall</h1><blockquote>
+<p>以太坊Solidity编程语言开发框架</p>
+</blockquote>
+<p><code>$ sudo npm install -g ethereumjs-testrpc truffle</code></p>
+<p>PS:如果 安装完 truffle，testrpc命令没有反应，尝试：<br><code>sudo ln -s /你的Node.js地址/bin/testrpc /usr/local/bin/testrpc</code><br><code>sudo ln -s /你的Node.js地址/bin/truffle /usr/local/bin/truffle</code></p>
+<p>####——————————骚气的的分割线更新于18-01-26————————————</p>
+<blockquote>
+<p>日后随着 学习打怪的不断深入，会解锁其他的环境搭建教程。</p>
+<blockquote>
+<blockquote>
+<p>####期待 吗？ 那就关注下面 公众号 随时锁定区块链开发学习教程进度 ：)</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</div></header></article><section class="reward"><a class="btn-reward" href="#">关注公众号</a><div class="reward-wrapper clearfix"><img src="/img/wechat.jpg" title="公众号：区块链开发技术共享"><img src="/img/lianhu.jpg" title="公众号：区块链部落"></div></section><div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC8zMzU4MC8xMDEzNQ=="><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2018 Fuyao-Jiang</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

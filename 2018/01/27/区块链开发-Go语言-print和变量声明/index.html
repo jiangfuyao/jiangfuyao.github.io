@@ -6,9 +6,15 @@
 <p>在Ubuntu终端下cd 到项目路径，<br>运行<code>atom ./</code>用atom编辑器打开当前目录<br>在Atom中新建一个helloworld.go文件，编辑完之后保存，<br>在Ubuntu终端下，运行:<br><strong><code>$ go run helloworld.go</code></strong><br>看到Hello,world 输出，则成功。  </p>
 </blockquote>
 <h4 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h4><blockquote>
-<p>%d 数字<br>    %c 字符不带引号<br>    %b 二进制<br>    %o 八进制<br>    %x 16进制<br>    %#X 16进制多个 0X<br>    x大写 输出大写，X小写 输出小写<br>    %p 打印地址 &amp;name  </p>
+<p>%d 数字<br>    %c 字符不带引号<br>    %b 二进制<br>    %o 八进制<br>    %x 16进制<br>    %#X 16进制多个 0X<br>    x大写 输出大写，X小写 输出小写<br>    %p 打印地址 <code>&amp;name</code> </p>
 </blockquote>
-<p>例如：</p>
+<pre><code>%q   ASSIC 码       65  = A  打印出 A  
+%T   打印数据类型  
+%d   整型  
+%v   打印原型  
+%f    浮点  
+%t  布尔型  
+</code></pre><p>例如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">func main()  &#123;</span><br><span class="line"></span><br><span class="line">  fmt.Printf(&quot;%d jiangfuyao %d&quot;,500, 1000)</span><br><span class="line"></span><br><span class="line">&#125;  //注释：输出结果为 500 jiangfuyao 1000</span><br></pre></td></tr></table></figure>
 <p>再例如 输出八进制： 用 %o（如下：）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">func main()  &#123;</span><br><span class="line"></span><br><span class="line">  fmt.Printf(&quot;%o jiangfuyao %o&quot;,500 ,1000)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

@@ -1,0 +1,70 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="Fuyao-Jiang"><meta name="description" content="区块链开发、golang、智能合约、共识算法、密码学、Bitcoin、Ethereum、Bitshare源码解析、超级账本"><link rel="alternative" href="/atom.xml" title="姜富耀 | BlockChain" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>开拓：DAG技术--下一代分布式账本技术 - 姜富耀 | BlockChain</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0;"><header class="head"><h1 class="head-title u-fl"><a href="/">姜富耀 | BlockChain</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">☯ DIR'/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-02-04T08:31:36.000Z">二月 4, 2018</time><h1 class="post__title"><a href="/2018/02/04/开拓：DAG技术-下一代分布式账本技术/">开拓：DAG技术--下一代分布式账本技术</a></h1><div class="post__main echo"><blockquote>
+<p>从15年开始，区块链概念被单拎出来，这之前区块链还只是比特币技术里的一个数据结构，中本聪白皮书里把block和chain连一起的时候也只是a chain of blocks 。</p>
+</blockquote>
+<p>随着以太坊去中心化计算机的概念提出来，很多人开始把以太坊称作区块链2.0，而比特币被归到了区块链1.0。至于区块链3.0，市场上为了抢夺区块链3.0的冠名权打的不可开交，没准会是DAG。因为之前的区块链都是线链表结构，而DAG是基于有向无环图结构，相当于把2维的区块链升到了3维。</p>
+<blockquote>
+<p>在图论中，如果一个有向图无法从某个顶点出发经过若干条边回到该点，则这个图是一个有向无环图（DAG图）。</p>
+</blockquote>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/356px-Directed_acyclic_graph_3.svg.png" alt="DAG"></p>
+<p>DAG(Directed acyclic graph)，有向无环图，是计算机领域一个常用的数据结构，因为独特的拓扑结构所带来的一些特性，经常被用到处理动态规划，导航中寻求最短路径，数据压缩等场景中。</p>
+<blockquote>
+<p>DAG全称是“有向无环图”，没有区块概念，不是把所有数据打包成区块，再用区块链接区块，而是每个用户都可以提交一个数据单元，这个数据单元里可以有很多东西，比如交易、消息等等。数据单元间通过引用关系链接起来，从而形成具有半序关系的DAG（有向无环图）。</p>
+</blockquote>
+<p>DAG的特点是把数据单元的写入操作异步化，大量的钱包客户端可以自主异步地把交易数据写入DAG，从而可以支持极大的并发量和极高的速度。<br>同时，使用DAG技术的TrustNote还支持声明式智能合约，声明式的智能合约要表达的意思是可以直接按照用户想要的结果去写、去描述，以很简单的语言，让大家都能看懂的语言去描述他要干的事情。</p>
+<p>第一次提出DAG跟区块链结合是在Nxt社区，可以发现DAG最初出现就是为了解决区块链的效率问题。比特币的效率一直比较低，基于工作量证明共识下的出块机制是一个原因，由于链式的存储结构，整个网络中同时只能有一条链，导致出块无法并发执行。社区有人提出DAG的拓扑结构来存储区块，这个时候更多还是类似侧链的解决思路，不同的链条存储不同类型的交易，这样降低出现双花的可能，在之后某个节点需要合并的时候，几个分支再归并到一个区块。</p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/DQmYnGMjizUY2nYQAUMrxrwAuFsceZgWYju8X3DofyXrge4_1680x8400.png" alt="DAG"></p>
+<blockquote>
+<p>截止到2017年年底，“高流量应用”越来越多，除了主流电商平台外，还有直播平台、P2P理财、今日头条、陌陌等崭露头角，如果“高流量应用”与DAG区块链技术结合，将会给行业带来哪些变革呢？除区块链自身的特点去中心化、分布式账本、不可篡改之外，DAG区块链技术不但可以支持高并发，结合双层共识机制，使用工作量证明共识算法，还能够防止“双花”问题。</p>
+</blockquote>
+<p>那么，DAG如何支持高并发的呢？第一，数据不像比特币和以太坊一样强同步，而是弱同步，允许节点在同一时刻数据不一样，数据可以有一些微小的差别。第二，可以通过数据单元之间的引用来完成交易的确认，就是后面发生的单元去引用前面的单元，这样不需要我们把数据传给矿工，整个过程都是由自己去完成的，这个过程很快。DAG是解决高并发比较优美的方法，比起之前的闪电网络，还有其他一些方面，DAG有其先天优势。</p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/a50f4bfbfbedab6425dbbb25fc36afc378311ead.jpg" alt="DAG图"></p>
+<p>再来看看DAG是如何防止“双花”？在有向图里如果能选出一个MainChain，这个时候会发现所有图里面的节点都可以用一种方法来给它做排序，把这个序号连接起来在一排，这张图将会变成跟区块链一样的序列结构，就是排完序的节点，而且每个节点是一个交易，而不是一个区块。所以，确定了主链，通过主链，可以形成全序。最后达到的结局就是在某一个逻辑状态里，交易还是被排序了，这是DAG最关键核心的部分。</p>
+<p>DAG网络一个重要的问题就是解决网络宽度，DAG网络中，每笔交易被确认，需要链接到已经在网络中存在的并且比较新的交易，如果都选择网络中比较早的交易，会导致网络宽度过宽，新的交易难以得到确认。理想的状态是，新的交易发起时，选择网络中已经存在的并且比较新的交易做链接确认，这样网络的宽度保持在一定范围，能让新的交易有足够快的确认时间。在IOTA中，tangle也提出了自己控制交易宽度的算法，有兴趣可以参考tangle白皮书。</p>
+<p>“高流量应用”是随着节点数和交易数的增加平滑扩展，当这个节点数超过1亿或交易数超过并发100万时，DAG的特性刚好是交易越多越快，节点越多越快。</p>
+<blockquote>
+<p>那么DAG究竟有哪些特点，居然让iota市值一度排到了虚拟货币第四的位置。</p>
+</blockquote>
+<h4 id="1-交易速度快"><a href="#1-交易速度快" class="headerlink" title="1.交易速度快"></a>1.交易速度快</h4><p>如上文提到，由于DAG摒弃了区块概念，交易直接进入全网中（需要指出，iota网络中每发起一笔交易，会类似hashcash一样的机制做简单的pow证明），所以交易速度预期比基于pow和pos的需要出块的区块链会快不少。</p>
+<h4 id="2-无需挖矿"><a href="#2-无需挖矿" class="headerlink" title="2.无需挖矿"></a>2.无需挖矿</h4><p>DAG把交易确认的环境直接下放给交易本身，无需由矿工打包成区块后同意交易顺序。所以DAG网络中没有矿工的角色。</p>
+<h4 id="3-无手续费"><a href="#3-无手续费" class="headerlink" title="3.无手续费"></a>3.无手续费</h4><p>iota的tangle网路中，交易发起只需要做简单的POW工作量证明，整个网络中的POW都是发起交易者自己做的，而不是交给矿工。发起交易无需手续费。</p>
+<h4 id="4-智能合约支持"><a href="#4-智能合约支持" class="headerlink" title="4.智能合约支持"></a>4.智能合约支持</h4><p>目前iota还不支持智能合约，但是官方roadmap中有计划在18年开始实现对智能合约的支持。而byteball也还不支持智能合约。</p>
+<h4 id="5-需要见证节点"><a href="#5-需要见证节点" class="headerlink" title="5.需要见证节点"></a>5.需要见证节点</h4><p>不管是iota还是byteball，目前的网络结构中，还是需要见证人机制的存在。这一部分不管是DPOS、POS、PBFT，大家最终都会在效率、安全性上寻求一种平衡。</p>
+<blockquote>
+<p>　　Byteball、IOTA和 XDAG都使用了DAG 技术</p>
+</blockquote>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/1-1G215151Z5951.jpg" alt="Byteball，IOTA"></p>
+<blockquote>
+<p>Byteball的独特功能毫无疑问是其内置的隐秘资产，用黑球(Blackbyte)可以进行匿名交易。</p>
+<p>IOTA的独特功能毫无疑问是零交易费。因此，在全球范围内唯一能够作为物联网骨干技术的就是IOTA。</p>
+</blockquote>
+<p>现实世界的采用和应用领域</p>
+<p>　　IOTA离被“大规模应用”仍然很远，但仍然领先于Byteball。IOTA-CORE几个月的谈判和聪明的战略管理，特别是DavidSønstebø的努力和Dominik Schiener参与的有影响的物联网会议，推动IOTA和真实公司之间的大量合作和伙伴关系。</p>
+<p>　　最近增加的基金会成员让我们依稀看到了的IOTA未来，它不仅局限于加密货币，而是放眼于真正的全球业务。</p>
+<p>　　对于投机者和开发者而言，这可能是目前IOTA相对于Byteball最大的赢利边际。</p>
+<p>　　应用是两者最值得一提的区别。</p>
+<p>　　Byteball正在积极地尝试替代现有的货币，如比特币，或者更夸张的说，是去取代美元，欧元和所有其他法币，至少长期来看是这样。这就像比特币要做的一样。</p>
+<p>　　IOTA也可以这样用，但是具有完全不同的应用区域：物联网。全球网络，其中无数设备在各自领域相互通信，工业设备如传感器或M2M，以及微支付，这其中交易费用很重要。智能合约，智能数据，智能城市是IOTA可以并将会应用的几个例子。</p>
+<blockquote>
+<p>XDAG 俄罗斯匿名发行基于DAG技术的加密货币  </p>
+</blockquote>
+<p><a href="http://xdag.me/" target="_blank" rel="noopener">http://xdag.me/</a>  </p>
+<p>ubuntu 挖矿教程  </p>
+<p><a href="http://xdag.me/gitweb" target="_blank" rel="noopener">http://xdag.me/gitweb</a>   </p>
+<p>上面网址，打开下载最新源码snapshot，解压缩。<br>安装依赖包：</p>
+<p><code>$ sudo dnf install git gcc openssl-devel</code><br>or<br><code>$ sudo apt-get install git gcc libssl-dev</code>    </p>
+<p>安装完，打开终端，cd到 解压的源码/cheatcoin/ 目录下</p>
+<p>然后输入<code>make</code>编译  </p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/xdag1.png" alt="make XDAG"></p>
+<p>编译完成，运行 <code>$ ./xdag -m 进程数 45.77.35.21:8899</code>(加-d 参数可以后台进行)<br>但是后台杀进程需要用：<code>ps -ef |grep xdag |grep -v grep|awk &#39;{print $2}&#39;|xargs kill -9</code>  </p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/xdag2.png" alt="xdag"><br>设置钱包密码，最后让输入一串随机字符。</p>
+<p>然后开始挖矿，查询命令：<br><code>xdag&gt; state</code>查看当前状态<br><code>xdag&gt; balance</code>查看余额<br><code>xdag&gt; account</code>查看地址<br><code>xdag&gt; xfer [amount] [address]</code> 转账  </p>
+<blockquote>
+<p>其他的一些旷池可以选择。  </p>
+<p>148.251.139.197:443    (1%-5%-2%; Netherlands; <a href="https://xdag.poolaroid.com/" target="_blank" rel="noopener">https://xdag.poolaroid.com/</a>)<br>139.99.124.121:8899   (1%-1%-1%; Singapore-proxy-China; <a href="http://xdag.top" target="_blank" rel="noopener">http://xdag.top</a>)<br>45.77.35.21:8899         (1%-1%-1%; Singapore-proxy-China; <a href="http://xdag.top" target="_blank" rel="noopener">http://xdag.top</a>)<br>66.11.125.30:777         (1%-17%-77%; US, Houston; <a href="http://xdag.pool.ga/stats.txt" target="_blank" rel="noopener">http://xdag.pool.ga/stats.txt</a>)<br>52.191.198.174:13654  (0.5%-12%-6%; US, Virginia; <a href="http://52.191.198.174/" target="_blank" rel="noopener">http://52.191.198.174/</a>)<br>62.210.130.205:13655  (1%-7%-7%; France; <a href="http://lucky7pool.hopto.org/" target="_blank" rel="noopener">http://lucky7pool.hopto.org/</a>)<br>139.99.101.187:13654  (1%-1%-1%; Singapore; <a href="http://139.99.101.187/stats" target="_blank" rel="noopener">http://139.99.101.187/stats</a>)<br>120.79.95.7:12564       (0.5%-10%-10%; China; <a href="http://120.79.95.7:12565/" target="_blank" rel="noopener">http://120.79.95.7:12565/</a>)<br>95.105.233.208:13654  (0.5%-12%-10%; Slovakia; <a href="https://xdagpool.com/" target="_blank" rel="noopener">https://xdagpool.com/</a>)<br>24.234.35.55:31333      (0.5%-2%-7%; US, Las Vegas)<br>77.55.222.85:443         (1%-1%-1%; Poland; <a href="http://www.corpopool.com" target="_blank" rel="noopener">http://www.corpopool.com</a>)<br>195.24.64.107:443       (1%-1%-1%; Russia)<br>213.168.251.23:13654  (1%-5%-10%; UK; <a href="http://xdag.me/stats.txt" target="_blank" rel="noopener">http://xdag.me/stats.txt</a>)<br>47.93.223.203:13654    (1%-5%-10%; China)<br>172.105.216.53:3355    (1%-6%-8%; Japan)<br>54.37.158.221:13654    (1%-5%-10%; France; <a href="https://xdag.rubencm.net/pool" target="_blank" rel="noopener">https://xdag.rubencm.net/pool</a>)<br>109.90.229.170:35585  (1%-1%-1%; Germany; <a href="http://themaxx2k.hopto.org" target="_blank" rel="noopener">http://themaxx2k.hopto.org</a>)<br>45.63.58.16:13654       (1%-5%-10%; US, Los Angeles)<br>199.16.31.96:3355       (1%-1%-1%; US, Rochester)</p>
+<p>相信对DAG的技术讨论也会变多。从技术角度来看，DAG给我们提供了完全不一样的区块链实现，高性能和无手续费这些点确实引人注目。随着社区对DAG技术的进一步完善和发展，也许，DAG会是真正的区块链3.0,只少已经让2维的区块链，升高了一个维度。一步一步，看时代潮流的浪花！</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong><em>日后随着 学习打怪的不断深入，会解锁其他的高级教程。</em></strong>  </p>
+<h3 id="期待-吗？-那就关注下面-公众号-随时锁定区块链开发学习教程进度-："><a href="#期待-吗？-那就关注下面-公众号-随时锁定区块链开发学习教程进度-：" class="headerlink" title="期待 吗？ 那就关注下面 公众号 随时锁定区块链开发学习教程进度 ：)"></a><strong><em>期待 吗？ 那就关注下面 公众号 随时锁定区块链开发学习教程进度 ：)</em></strong></h3></blockquote>
+</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/开拓/">开拓</a></li></ul></footer></article><section class="reward"><a class="btn-reward" href="#">关注公众号</a><div class="reward-wrapper clearfix"><img src="/img/wechat.jpg" title="公众号：区块链开发技术共享"><img src="/img/lianhu.jpg" title="公众号：区块链部落"></div></section><div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC8zMzU4MC8xMDEzNQ=="><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2018 Fuyao-Jiang</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

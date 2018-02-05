@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="Fuyao-Jiang"><meta name="description" content="区块链开发、golang、智能合约、共识算法、密码学、Bitcoin、Ethereum、Bitshare源码解析、超级账本"><link rel="alternative" href="/atom.xml" title="姜富耀 | BlockChain" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>区块链开发 区块链原理 - 姜富耀 | BlockChain</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0;"><header class="head"><h1 class="head-title u-fl"><a href="/">姜富耀 | BlockChain</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">☯ DIR'/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-02-05T10:44:40.000Z">二月 5, 2018</time><h1 class="post__title"><a href="/2018/02/05/区块链开发-区块链原理、以太坊钱包安装/">区块链开发 区块链原理</a></h1><div class="post__main echo"><h2 id="区块链原理简介"><a href="#区块链原理简介" class="headerlink" title="区块链原理简介"></a>区块链原理简介</h2><blockquote>
+<p>区块链 是一个基于密码学安全的分布式账本，是一个方便验证，不可篡改的账本。</p>
+</blockquote>
+<h3 id="哈希值"><a href="#哈希值" class="headerlink" title="哈希值"></a>哈希值</h3><blockquote>
+<p>Hash就是把任意长度的输入（又叫做预映射， pre-image），通过散列算法，变换成固定长度的输出，该输出就是散列值。  </p>
+</blockquote>
+<p>这种转换是一种压缩映射，也就是，散列值的空间通常远小于输入的空间，不同的输入可能会散列成相同的输出，所以不可能从散列值来唯一的确定输入值。简单的说就是一种将任意长度的消息压缩到某一固定长度的消息摘要的函数。  </p>
+<p><code>https://anders.com/blockchain/hash.html</code> </p>
+<p>这个网址输入字符串 输出 对应 哈希值  </p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E5%93%88%E5%B8%8C1.png" alt="hash">  </p>
+<p>比如：<code>姜富耀</code> 这几个字的哈希值为：</p>
+<p><code>7141e66a74c52de5aa164d66a1063e99f876c65dc5a3c45a8dd6b8893b843904</code>  </p>
+<p>只要修改任何一个字符，哈希都会发生特别大的变化：  </p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E5%93%88%E5%B8%8C2.png" alt="hash"><br><code>姜富耀 孔壹</code> 这几个字的哈希值 变为：  </p>
+<p><code>a11b0354def43d5485116311a185f4158c88830b7707124cb9c639b6627cf28d</code>  </p>
+<h3 id="什么是-区块-Block-？"><a href="#什么是-区块-Block-？" class="headerlink" title="什么是 区块(Block) ？"></a>什么是 区块(Block) ？</h3><p><code>https://anders.com/blockchain/block.html</code>  </p>
+<p>这个网址 演示一个区块如何基于POW(工作量证明)，产生一个区块。<br><img src="http://p37d7w3w4.bkt.clouddn.com/%E5%8C%BA%E5%9D%971.png" alt="Block">  </p>
+<ul>
+<li><strong><code>Block</code></strong> : 区块高度，# 1 表示第一个区块。  </li>
+<li><strong><code>Nonce</code></strong> ：随机数，由于工作量证明机制，在已知别的所有字符串后面不断加上这个<code>Nonce</code> 随机数，直到 <code>Hash</code>值的 头部出现<code>0000</code>(假设难度系数为头部出现<code>0000</code>)，那么挖矿成功。  </li>
+<li><strong><code>Data</code></strong> ： 里面写入 转账信息，以及其他数据。  </li>
+<li><strong><code>Hash</code></strong> : 哈希值，检验难度系数是否达到要求。  </li>
+</ul>
+<blockquote>
+<p>当我们发生一笔转账，Data数据 就会记录，当然，不光有一笔交易，会有好多笔交易记录，还会有别的一些字符串信息。  </p>
+</blockquote>
+<p>这个时候，矿工就会在 Block、Data 等等数据组成的哈希值末尾，不断地随机添加Nonce随机数，知道 达到难度要求，比如开头四个零，或者5个零，或者其他难度方式。一旦达到难度要求，生成合格的哈希值，那么挖矿成功。  </p>
+<p>比如：现在<code>Data</code>里面有 A 给 B 转100块 的转账记录，还附加了一些其他字符串数据，矿工拿到这 Data 跟 区块高度等等附加在一起的一个哈希值，然后不断往末尾 添加<code>Nonce</code>随机数，知道<code>Hash</code>达到难度系数，这里为开头<code>0000</code>，挖矿成功。  </p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E5%8C%BA%E5%9D%972.png" alt="Block">  </p>
+<p>点击<code>Mine</code>进行挖矿：  </p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E5%8C%BA%E5%9D%973.png" alt="Block">  </p>
+<p>挖矿结束，如图所示：<br><code>Hash</code>：<code>000022c591d6dfab12121ee82d19418f2b706582adb152c7b1bf519e8e2eccbf</code>  </p>
+<p><code>Hash</code> 开头有<code>0000</code>，达到预先设置的难度系数，如果有5个零，也成功，只不过是巧合，难度系数照样是4个零，就ok。 </p>
+<blockquote>
+<p>这样,一个区块(Block) 就产生了。</p>
+</blockquote>
+<h2 id="那-区块链-BlockChain-又是啥-？"><a href="#那-区块链-BlockChain-又是啥-？" class="headerlink" title="那 区块链(BlockChain) 又是啥 ？"></a>那 区块链(BlockChain) 又是啥 ？</h2><p><code>https://anders.com/blockchain/blockchain.html</code><br>打开这个网址，或刚才网页，点击<code>BlockChain</code>菜单。  </p>
+<p>第一个 区块 <code>Data</code>假设 里面 写的 <code>A -&gt; B 1000</code><br>第二个 区块 <code>Data</code>假设 里面 写的 <code>B -&gt; C 200 B -&gt; D 300</code><br>第三个 区块 <code>Data</code>假设 里面 写的 <code>D -&gt; E 100</code><br><img src="http://p37d7w3w4.bkt.clouddn.com/%E5%8C%BA%E5%9D%97%E9%93%BE1.png" alt="BlockChain">  </p>
+<p>然后 依次从第一个 区块开始 点击<code>Mine</code>按钮，挖矿，依次使<code>Hash</code> 开头至少出现<code>0000</code>，这就是 一条 区块链，一个节点的挖矿过程。<br>注意： 第一个 区块的<code>Prev</code> 全为零，当第一个区块挖矿完成，第二个区块 的<code>Prev</code> 就会变成 第一个区块的 <code>Hash</code>，并且<code>Prev</code>是映射第二个区块挖矿初始哈希的字符串的一部分，这就是一个衔接，所以产生了<strong>链条</strong>结构。  </p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E5%8C%BA%E5%9D%97%E9%93%BE2.png" alt="BlockChain">  </p>
+<p>所以想修改 之前 的区块记录的数据，必须把之后每个区块都重新挖矿。：）  </p>
+<h3 id="多节点区块链"><a href="#多节点区块链" class="headerlink" title="多节点区块链"></a>多节点区块链</h3><blockquote>
+<p>上面介绍的是单节点实现的区块链，但是不光只有一个节点，而是很多个节点构成的一个系统，否则自己玩玩就行了，想怎么改就怎么改，无非就是花点时间罢了。  </p>
+</blockquote>
+<p>但是，多节点就不一样了，只要大部分的分跟你不一样，你就是一个假数据，你即使改了数据，只要不能达到算力的51%左右，就无法篡改数据。  </p>
+<p>打开<code>https://anders.com/blockchain/distributed.html</code>或者点击刚才网页的 <code>distributed</code>页面。  </p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E5%A4%9A%E8%8A%82%E7%82%B9%E5%8C%BA%E5%9D%97%E9%93%BE.png" alt="多节点">  </p>
+<p>每一个节点都有一份区块链，这就是 <code>分布式账本</code>。 </p>
+<h3 id="交易记录"><a href="#交易记录" class="headerlink" title="交易记录"></a>交易记录</h3><blockquote>
+<p><code>Tx</code>参数 记录 该区块中 所有的转账记录，作为映射给挖矿开始时的哈希值的字符串的一部分。  </p>
+</blockquote>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E4%BA%A4%E6%98%93%E8%AE%B0%E5%BD%951.png" alt="">  </p>
+<blockquote>
+<p><code>coinbase</code>参数 是矿工挖矿 奖励，每次出块都会奖励 矿工  </p>
+</blockquote>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/coinbase.png" alt="">  </p>
+<blockquote>
+<p>POW工作量证明 的 矿机 样式案例： </p>
+</blockquote>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E7%9F%BF%E6%9C%BA%E5%9B%BE%E7%89%87.jpg" alt="矿机"> </p>
+<blockquote>
+<p>大规模矿场： </p>
+</blockquote>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E7%9F%BF%E6%9C%BA%E5%9B%BE%E7%89%872.jpg" alt="矿场"></p>
+<hr>
+<blockquote>
+<p><strong><em>日后随着 学习打怪的不断深入，会解锁其他的高级教程。</em></strong>  </p>
+<h3 id="期待-吗？-那就关注下面-公众号-随时锁定区块链开发学习教程进度-："><a href="#期待-吗？-那就关注下面-公众号-随时锁定区块链开发学习教程进度-：" class="headerlink" title="期待 吗？ 那就关注下面 公众号 随时锁定区块链开发学习教程进度 ：)"></a><strong><em>期待 吗？ 那就关注下面 公众号 随时锁定区块链开发学习教程进度 ：)</em></strong></h3></blockquote>
+</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/BlockChain/">BlockChain</a></li></ul></footer></article><section class="reward"><a class="btn-reward" href="#">关注公众号</a><div class="reward-wrapper clearfix"><img src="/img/wechat.jpg" title="公众号：区块链开发技术共享"><img src="/img/lianhu.jpg" title="公众号：区块链部落"></div></section><div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC8zMzU4MC8xMDEzNQ=="><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2018 Fuyao-Jiang</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

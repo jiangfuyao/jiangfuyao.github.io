@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="Fuyao-Jiang"><meta name="description" content="区块链开发、golang、智能合约、共识算法、密码学、Bitcoin、Ethereum、Bitshare源码解析、超级账本"><link rel="alternative" href="/atom.xml" title="姜富耀 | BlockChain" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>研究以太坊扩展解决方案 - 姜富耀 | BlockChain</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0;"><header class="head"><h1 class="head-title u-fl"><a href="/">姜富耀 | BlockChain</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">☯ DIR'/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-02-27T12:24:12.000Z">二月 27, 2018</time><h1 class="post__title"><a href="/2018/02/27/研究以太坊扩展解决方案/">研究以太坊扩展解决方案</a></h1><div class="post__main echo"><p><img src="http://p37d7w3w4.bkt.clouddn.com/ETH1.png" alt=""></p>
+<blockquote>
+<p><strong>什么是’可扩展性’？</strong></p>
+</blockquote>
+<p>在以太坊的背景下，我们将可扩展性定义为主链能够随着用户数量（DApps）的增加而提高性能（吞吐量，延迟），而不会对用户体验（gas价格，交易时间）产生影响。随着采用率的增加，网络架构必须能够适应新的需求，而不是相反。</p>
+<blockquote>
+<p><strong>以太坊的现状</strong></p>
+</blockquote>
+<p>今天，以太坊不可扩展。但值得注意的是，它的设计方式与所有区块链协议相同。每个完整节点在处理包括智能合约代码，账户余额和存储在内的交易时存储所有状态数据。这确保了高度的安全性，但可扩展性受到影响。幸运的是，以太坊所需的规模性架构正在建设中。例子包括<code>Cosmos</code>，<code>Sharding</code>，<code>Plasma</code>，<code>Raiden</code>和<code>Polkadot</code>等等。其他文章已经很好地介绍了这些技术 相反，在本文中，我们将重点介绍一个可用的扩展解决方案的示例：权威证明。</p>
+<blockquote>
+<p><strong>面临的问题</strong> </p>
+</blockquote>
+<p><code>DApps</code> 需要立即扩展解决方案。且没有人会出现问题：首先，为测试和启动创建了障碍。交通拥挤等同于低吞吐量和高交易费用。这使得在主网上部署DApp成本过高。其次，许多主要准备就绪的项目都处于困境，寻求立即解决方案。最后，网络拥塞和高额交易费用会阻碍未来项目建立在以太坊之上，转而支持其他网络。目前没有捷径，并且所有链都遭受与Vitalik Buterin所称的“Scalability Trilema”相同的问题：  </p>
+<p>Trilema认为，区块链目前仅限于拥有以下三个属性中的两个：  </p>
+<p><code>可扩展性</code>  </p>
+<p><code>分权</code>  </p>
+<p><code>安全</code></p>
+<p>Vitalik相信有两个问题：<code>1）</code>我们能否构思一个新系统，只有少数节点验证每个事务？通过确保足够的节点验证每个事务，可以维护安全性。<code>2）</code>通过有足够少的节点横向验证多个事务可以使吞吐量最大化？Vitalik的是问的背景下，这些问题分片，然而，他的直觉也关系到描述验证的权威证明。</p>
+<blockquote>
+<p><strong>提出的临时解决方案</strong>  </p>
+</blockquote>
+<p>在Web3上，我们支持以下短期解决方案：部署权限证明网络并使用桥接器连接到主网络（网桥包括 <code>Parity</code> 和 <code>Grid +</code>）。其优点是PoA不依赖节点寻找主观数学问题的解决方案。相反，预先选定的一组称为 “<code>验证者</code>” 的权威确保区块链安全，并允许创建<code>新区块</code>。他们是负责管理网络的 <code>公证人</code>。换句话说，他们的所有身份都是公开的，并可由任何第三方进行验证。</p>
+<p>虽然权威证明是区块链领域最近的一个想法，但由于许多优势，它正在收集作为临时缩放解决方案的势头。首先，它可以说是更安全的（有问题的验证者无法控制网络或反向链中的以前事务）。其次，由于网络中的摩擦较少，因此在块生产中效率更高。最后也是最重要的是，桥接链意味着PoA链上的操作几乎可以<code>毫无成本</code>地进行。</p>
+<blockquote>
+<p><strong>关于信任与治理的思考</strong>  </p>
+</blockquote>
+<p>PoA链改变了信任等式。经过验证的以太坊工作证明共识不再保证<code>信任</code>。现在信任驻留在验证者的绝大多数中。虽然验证者的数量影响网络分布，但更重要的是安全性是验证者之间的 <code>多样性</code>。关键是不要让你的 <code>验证者</code> 集中在一个分领域，因为他们可能会试图合谋。</p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/ETH2.png" alt=""><br>来源：权威证明：具有股权身份的共识模型。（POA Network）  </p>
+<p><code>PoA</code>是验证者的公共身份执行证明利益作用的<code>权益证明</code>的改变版。<code>验证者</code>可能是众所周知的初创公司，DApps或众筹组织。他们的身份受到威胁，他们被激励为了网络的最佳利益而行事。就共识而言，验证人必须达到绝对多数，才能签署链条。如果是这种情况，它就成为这个链条的永久性部分。总之，PoA共识非常适合<code>私有链</code>。它可以促进更快，更具扩展性和更具成本效益的区块链，从而使DApps和潜在的众筹项目能够自由和轻松地启动或测试其创新想法。</p>
+<blockquote>
+<p><strong>PoA链例子</strong>  </p>
+</blockquote>
+<p>PoA随时可用，正在被生态系统内的一些项目所考虑或利用。一些例子包括：<code>Giveth，POA网络，TomoChain，Rublix，Swarm City，Colony和GoChain</code>。两个以太网测试网络<code>Kovan</code>和<code>Rinkeby</code>也使用PoA共识算法。</p>
+<blockquote>
+<p><strong>权威证明的局限性</strong>  </p>
+</blockquote>
+<p>PoA的关键在于信任是 <code>预先确定的</code>。达成共识是通过<code>预先选定</code>的验证人数来达成的，与提交保证金的当事人达成共识的证明不同。PoA模型为该等式引入了一个集中元素。我们接受这一点，但认为这在财团内是适当的。以银行业为例。通过使用来自完全无关的行业验证块的验证者会获得什么结果？例如，为什么中美洲的咖啡生产商联盟需要验证银行私有链上的区块？一个可能的答案是：为了防止共谋，网络应该尽可能地分布。同意 - 但如果我们能够实现恰到好处的<code>权力下放</code>以充分保护网络，但没有更好的，以至于损害网络的可扩展性？例如，<code>信托</code>可以分布在工业网络中，如银行，监管机构，工会，保管人，律师，交易所等。由于他们的身份受到威胁，所有参与者都会被激励，以维护其公众声誉的行为。转而符合网络的最佳利益。此外，还可以添加额外的保护层，例如罚款，取消监管许可和其他预防措施，可以写入智能合同中，在网络检测到任何恶意行为人时执行这些合同。所有参与者都会被激励为维护自己的公共声誉而行动，这反过来又符合网络的最佳利益。此外，还可以添加额外的保护层，例如罚款，取消监管许可和其他预防措施，可以写入智能合同中，在网络检测到任何恶意行为人时执行这些合同。所有参与者都会被激励为维护自己的公共声誉而行动，这反过来又符合网络的最佳利益。此外，还可以添加额外的保护层，例如罚款，取消监管许可和其他预防措施，可以写入智能合同中，在网络检测到任何恶意行为人时执行这些合同。</p>
+<p>需要更多的工作来充分探索<code>信任方案</code>和<code>治理模式</code>的复杂性。每个网络应用程序可能会略有不同。我们也看到PoA链作为临时解决方案的一部分，而<code>不是最终的解决方案</code>。关于治理和安全方面的任何缺点很可能会由未来的协议如: <code>Polkadot</code>来补充。</p>
+<blockquote>
+<p><strong>Polkadot：一个长期的扩展解决方案</strong> </p>
+</blockquote>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/ETH3.png" alt=""><br>来源：Polkadot Lightpaper  </p>
+<p><code>Polkadot</code> 正在设计为一个完全可扩展的区块链，它将充当新区块链技术的部署和交互测试平台。Polkadot是一个可扩展的多重连接。这意味着，与目前侧重于提供单链解决方案的区块链不同，Polkadot旨在完全不提供固有功能。相反，Polkadot提供了大量链条可以<code>并行</code>运行的基础“<code>中继链</code>”，这些链条被称为“<code>Parachains</code>”(<code>平行链</code>)。在信任方面，<code>平行链</code> 由<code>中继链</code>提供的安全性，而不是提供自己的安全性。<code>中继链</code>提供安全附于<code>平行链</code>并证明他们之间传递消息的安全性。与<code>权威证明</code>风格的网络不同，<code>Polkadot</code>设想可以在完全公开和公共的情况下作为网络进行部署，无需任何特定的组织或可信任的权威机构来维护它。</p>
+<p>为了准备Polkadot的到来，开发者可能需要测试他们的应用程序在多个链中的功能。诸如从一个链到另一个链的<code>Token</code>转账等功能将需要开发和测试。启动专用PoA链可能是允许进行这种测试的一种选择。虽然我们承认PoA网络不是解决Vitalik’Scalbility Trilema’的最佳方案，但它们至少可以用作Polchadot等多种扩展解决方案的<code>准备工作</code>的一部分。这是我们认为测试 私有链的另一个原因，而且PoA共识可以在短期和长期内增加价值。</p>
+<p><strong>原文来自: Web3 Foundation</strong><br>翻译: 姜富耀</p>
+<hr>
+<blockquote>
+<p><strong><em>日后随着 学习打怪的不断深入，会解锁其他的高级教程。</em></strong>  </p>
+<h3 id="期待-吗？-那就关注下面-公众号-随时锁定区块链开发学习教程进度-："><a href="#期待-吗？-那就关注下面-公众号-随时锁定区块链开发学习教程进度-：" class="headerlink" title="期待 吗？ 那就关注下面 公众号 随时锁定区块链开发学习教程进度 ：)"></a><strong><em>期待 吗？ 那就关注下面 公众号 随时锁定区块链开发学习教程进度 ：)</em></strong></h3></blockquote>
+</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/开拓/">开拓</a></li></ul></footer></article><section class="reward"><a class="btn-reward" href="#">关注公众号</a><div class="reward-wrapper clearfix"><img src="/img/wechat.jpg" title="公众号：区块链开发技术共享"><img src="/img/lianhu.jpg" title="公众号：区块链部落"></div></section><div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC8zMzU4MC8xMDEzNQ=="><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2018 Fuyao-Jiang</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

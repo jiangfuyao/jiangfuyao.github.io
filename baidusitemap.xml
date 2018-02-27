@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>http://jiangfuyao.com/2018/02/27/%E7%A0%94%E7%A9%B6%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%89%A9%E5%B1%95%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
+    <lastmod>2018-02-27T13:15:52.791Z</lastmod>
+    <data>
+        <display>
+        <title>研究以太坊扩展解决方案</title>
+        <pubTime>2018-02-27T12:24:12.000Z</pubTime>
+        
+        <tag>开拓</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://jiangfuyao.com/2018/02/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91-Solidity%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6-%E7%B1%BB%E5%9E%8B-%E5%9B%BA%E5%AE%9A%E5%A4%A7%E5%B0%8F%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84-%E5%8A%A8%E6%80%81%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84/</loc>
     <lastmod>2018-02-25T11:55:22.495Z</lastmod>
     <data>
@@ -56,7 +73,7 @@
     
   <url>
     <loc>http://jiangfuyao.com/2018/02/05/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91-Solidity%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%9A%E5%85%A5%E9%97%A8%E7%AF%87/</loc>
-    <lastmod>2018-02-05T14:43:32.777Z</lastmod>
+    <lastmod>2018-02-05T14:43:32.776Z</lastmod>
     <data>
         <display>
         <title>区块链开发 Solidity智能合约：入门篇</title>
@@ -73,7 +90,7 @@
     
   <url>
     <loc>http://jiangfuyao.com/2018/02/05/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86%E3%80%81%E4%BB%A5%E5%A4%AA%E5%9D%8A%E9%92%B1%E5%8C%85%E5%AE%89%E8%A3%85/</loc>
-    <lastmod>2018-02-05T13:29:21.446Z</lastmod>
+    <lastmod>2018-02-05T13:29:21.445Z</lastmod>
     <data>
         <display>
         <title>区块链开发 区块链原理</title>
@@ -90,7 +107,7 @@
     
   <url>
     <loc>http://jiangfuyao.com/2018/02/04/%E5%BC%80%E6%8B%93%EF%BC%9ADAG%E6%8A%80%E6%9C%AF-%E4%B8%8B%E4%B8%80%E4%BB%A3%E5%88%86%E5%B8%83%E5%BC%8F%E8%B4%A6%E6%9C%AC%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2018-02-04T09:29:53.193Z</lastmod>
+    <lastmod>2018-02-04T09:29:53.192Z</lastmod>
     <data>
         <display>
         <title>开拓：DAG技术--下一代分布式账本技术</title>
@@ -107,7 +124,7 @@
     
   <url>
     <loc>http://jiangfuyao.com/2018/01/29/%E5%8C%BA%E5%9D%97%E9%93%BE-Go%E8%AF%AD%E8%A8%80%EF%BC%9A%E5%87%BD%E6%95%B0/</loc>
-    <lastmod>2018-01-29T15:10:34.270Z</lastmod>
+    <lastmod>2018-01-29T15:10:34.269Z</lastmod>
     <data>
         <display>
         <title>区块链开发 Go语言：函数</title>
@@ -192,7 +209,7 @@
     
   <url>
     <loc>http://jiangfuyao.com/2018/01/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91-Go%E8%AF%AD%E8%A8%80-print%E5%92%8C%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E/</loc>
-    <lastmod>2018-01-27T13:58:08.080Z</lastmod>
+    <lastmod>2018-01-27T13:58:08.079Z</lastmod>
     <data>
         <display>
         <title>区块链开发 Go语言:print和变量声明</title>
@@ -209,7 +226,7 @@
     
   <url>
     <loc>http://jiangfuyao.com/2018/01/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91-Go%E8%AF%AD%E8%A8%80-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%EF%BC%8C%E8%BF%90%E7%AE%97%E7%AC%A6/</loc>
-    <lastmod>2018-01-27T13:55:01.013Z</lastmod>
+    <lastmod>2018-01-27T13:55:01.012Z</lastmod>
     <data>
         <display>
         <title>区块链开发 Go语言:数据类型，进制转换，运算符</title>
@@ -226,7 +243,7 @@
     
   <url>
     <loc>http://jiangfuyao.com/2018/01/26/Ubuntu-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91go%E8%AF%AD%E8%A8%80%EF%BC%8CNode-js%EF%BC%8Ctruffle%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2018-01-27T13:21:08.436Z</lastmod>
+    <lastmod>2018-01-27T13:21:08.435Z</lastmod>
     <data>
         <display>
         <title>Ubuntu 区块链开发go语言，Node.js，truffle环境搭建</title>
@@ -243,7 +260,7 @@
     
   <url>
     <loc>http://jiangfuyao.com/2018/01/26/BlockChain%20DEV%20Blog%20%E6%AD%A3%E5%BC%8F%E4%B8%8A%E7%BA%BF,%E5%85%B3%E6%B3%A8%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91%E5%BA%95%E5%B1%82%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2018-01-26T12:40:49.604Z</lastmod>
+    <lastmod>2018-01-26T12:40:49.603Z</lastmod>
     <data>
         <display>
         <title>BlockChain DEV Blog 正式上线,关注区块链开发底层技术</title>
@@ -260,11 +277,11 @@
     
   <url>
     <loc>http://jiangfuyao.com/2018/01/26/hello-world/</loc>
-    <lastmod>2018-01-26T01:41:23.949Z</lastmod>
+    <lastmod>2018-01-26T01:41:23.948Z</lastmod>
     <data>
         <display>
         <title>Hello World</title>
-        <pubTime>2018-01-26T01:41:23.949Z</pubTime>
+        <pubTime>2018-01-26T01:41:23.948Z</pubTime>
         
          
            

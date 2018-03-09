@@ -1,3 +1,4 @@
+http://jiangfuyao.com/2018/03/09/20分钟制作基于IPFS去中心化相册Dapp/
 http://jiangfuyao.com/2018/02/27/研究以太坊扩展解决方案/
 http://jiangfuyao.com/2018/02/18/区块链开发-Solidity智能合约-类型-固定大小字节数组-动态字节数组/
 http://jiangfuyao.com/2018/02/06/区块链开发-Solidity智能合约：变量、函数类型/

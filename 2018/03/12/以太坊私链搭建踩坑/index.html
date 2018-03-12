@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="Fuyao-Jiang"><meta name="description" content="区块链开发、golang、智能合约、共识算法、密码学、Bitcoin、Ethereum、Bitshare源码解析、超级账本"><link rel="alternative" href="/atom.xml" title="姜富耀 | BlockChain" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>以太坊私有链搭建踩坑 - 姜富耀 | BlockChain</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0;"><header class="head"><h1 class="head-title u-fl"><a href="/">姜富耀 | BlockChain</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">☯ DIR'/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-03-12T11:50:01.000Z">三月 12, 2018</time><h1 class="post__title"><a href="/2018/03/12/以太坊私链搭建踩坑/">以太坊私有链搭建踩坑</a></h1><div class="post__main echo"><h2 id="安装-Geth"><a href="#安装-Geth" class="headerlink" title="安装 Geth"></a>安装 Geth</h2><blockquote>
+<p>MacOS 安装 Geth</p>
+</blockquote>
+<p>mac先装homebrew的包管理器<br><a href="https://brew.sh/index_zh-cn" target="_blank" rel="noopener">https://brew.sh/index_zh-cn</a>  </p>
+<p>安装 Geth<br><code>$ brew tap ethereum/ethereum</code><br><code>$ brew install ethereum</code>  </p>
+<blockquote>
+<p>Ubuntu 安装 Geth </p>
+</blockquote>
+<p><code>$ sudo add-apt-repository -y ppa:ethereum/ethereum</code><br><code>$ sudo apt-get update</code><br><code>$ sudo apt-get install ethereum</code>  </p>
+<h2 id="安装-Mist钱包"><a href="#安装-Mist钱包" class="headerlink" title="安装 Mist钱包"></a>安装 Mist钱包</h2><p><a href="https://github.com/ethereum/mist/releases" target="_blank" rel="noopener">https://github.com/ethereum/mist/releases</a>  </p>
+<p>找到对应系统 Ethereum-Wallet 安装包.<br>下载完不要同步区块, 只是用来做 私链 前端界面.  </p>
+<h2 id="创建创世区块文件"><a href="#创建创世区块文件" class="headerlink" title="创建创世区块文件"></a>创建创世区块文件</h2><blockquote>
+<p>MacOS 打开终端 cd 到 <code>~/Library/Ethereum/</code>目录下.</p>
+<p>Linux 打开终端 cd 到 <code>~/.ethereum</code> 目录下.  </p>
+</blockquote>
+<p>删除目录下的 文件:<br><code>$ rm -rf *</code></p>
+<p>创建 创世区块文件:</p>
+<p><code>$ cat &gt; genesis.json</code><br>输入:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"nonce"</span>: <span class="string">"0x0000000000000042"</span>,</span><br><span class="line">    <span class="attr">"difficulty"</span>: <span class="string">"0x020000"</span>,</span><br><span class="line">    <span class="attr">"mixhash"</span>: <span class="string">"0x0000000000000000000000000000000000000000000000000000000000000000"</span>,</span><br><span class="line">    <span class="attr">"coinbase"</span>: <span class="string">"0x0000000000000000000000000000000000000000"</span>,</span><br><span class="line">    <span class="attr">"timestamp"</span>: <span class="string">"0x00"</span>,</span><br><span class="line">    <span class="attr">"parentHash"</span>: <span class="string">"0x0000000000000000000000000000000000000000000000000000000000000000"</span>,</span><br><span class="line">    <span class="attr">"extraData"</span>: <span class="string">"0x11bbe8db4e347b4e8c937c1c8370e4b5ed33adb3db69cbdb7a38e1e50b1b82fa"</span>,</span><br><span class="line">    <span class="attr">"gasLimit"</span>: <span class="string">"0x4c4b40"</span>,</span><br><span class="line">    <span class="attr">"config"</span>: &#123;</span><br><span class="line">        <span class="attr">"chainId"</span>: <span class="number">15</span>,</span><br><span class="line">        <span class="attr">"homesteadBlock"</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">"eip155Block"</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">"eip158Block"</span>: <span class="number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"alloc"</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>control + C</code>  结束输入  </p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E7%A7%81%E9%93%BE1.png" alt=""></p>
+<h2 id="初始化区块链"><a href="#初始化区块链" class="headerlink" title="初始化区块链"></a>初始化区块链</h2><p><code>$ geth init genesis.json</code>  </p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E7%A7%81%E9%93%BE2init.png" alt=""></p>
+<h2 id="启动私有链节点"><a href="#启动私有链节点" class="headerlink" title="启动私有链节点"></a>启动私有链节点</h2><p><code>$ geth --networkid 10 --rpc --rpcapi &quot;admin,debug,eth,miner,net,personal,shh,txpool,web3&quot; rpcaddr &quot;0.0.0.0&quot; --rpccorsdomain &quot;*&quot; --nodiscover --dev console</code>  </p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E7%A7%81%E9%93%BE3console.png" alt=""></p>
+<blockquote>
+<p>注意: 如果提示 30303端口被占用,解决方法:</p>
+</blockquote>
+<p>查看占用进程PID<br><code>$ lsof -i:30303</code>   </p>
+<p>kill 占用进程<br><code>$ kill -9 进程号</code>   </p>
+<p>然后, 重新执行启动节点命令  </p>
+<h2 id="私有链-挖矿"><a href="#私有链-挖矿" class="headerlink" title="私有链 挖矿"></a>私有链 挖矿</h2><blockquote>
+<p><strong>新开</strong> 一个终端, 打开 <strong>Geth控制台</strong>.  </p>
+</blockquote>
+<p><code>$ geth attach &#39;http://127.0.0.1:8545&#39;</code>  </p>
+<p>在控制台中, 新建一个以太坊 钱包账户:  </p>
+<p><code>&gt; personal.newAccount(&#39;新钱包密码&#39;)</code>  </p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E7%A7%81%E9%93%BE4new.png" alt="">  </p>
+<blockquote>
+<p>开启 挖矿 !   </p>
+</blockquote>
+<p><code>&gt; miner.start(1)</code>  </p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E7%A7%81%E9%93%BE5minerstart.png" alt=""> </p>
+<p>可以看到Geth节点终端下, 已经开始挖矿  </p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E7%A7%81%E9%93%BE6minering.png" alt=""></p>
+<h2 id="打开-Mist-钱包-也能查看-Ether"><a href="#打开-Mist-钱包-也能查看-Ether" class="headerlink" title="打开 Mist 钱包 也能查看 Ether"></a>打开 Mist 钱包 也能查看 Ether</h2><p><img src="http://p37d7w3w4.bkt.clouddn.com/%E7%A7%81%E9%93%BE7wallet.gif" alt=""></p>
+<blockquote>
+<p>停止挖矿   </p>
+</blockquote>
+<p><code>&gt; miner.stop()</code>  </p>
+<hr>
+<blockquote>
+<p><strong><em>日后随着 学习打怪的不断深入，会解锁其他的高级教程。</em></strong>  </p>
+<h3 id="期待-吗？-那就关注下面-公众号-随时锁定区块链开发学习教程进度-："><a href="#期待-吗？-那就关注下面-公众号-随时锁定区块链开发学习教程进度-：" class="headerlink" title="期待 吗？ 那就关注下面 公众号 随时锁定区块链开发学习教程进度 ：)"></a><strong><em>期待 吗？ 那就关注下面 公众号 随时锁定区块链开发学习教程进度 ：)</em></strong></h3></blockquote>
+</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/区块链/">区块链</a></li></ul></footer></article><section class="reward"><a class="btn-reward" href="#">关注公众号</a><div class="reward-wrapper clearfix"><img src="/img/wechat.jpg" title="公众号：区块链开发技术共享"><img src="/img/lianhu.jpg" title="公众号：区块链部落"></div></section><div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC8zMzU4MC8xMDEzNQ=="><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2018 Fuyao-Jiang</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

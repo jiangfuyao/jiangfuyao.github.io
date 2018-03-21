@@ -10,19 +10,20 @@
 <h2 id="安装-Mist钱包"><a href="#安装-Mist钱包" class="headerlink" title="安装 Mist钱包"></a>安装 Mist钱包</h2><p><a href="https://github.com/ethereum/mist/releases" target="_blank" rel="noopener">https://github.com/ethereum/mist/releases</a>  </p>
 <p>找到对应系统 Ethereum-Wallet 安装包.<br>下载完不要同步区块, 只是用来做 私链 前端界面.  </p>
 <h2 id="创建创世区块文件"><a href="#创建创世区块文件" class="headerlink" title="创建创世区块文件"></a>创建创世区块文件</h2><blockquote>
-<p>MacOS 打开终端 cd 到 <code>~/Library/Ethereum/</code>目录下.</p>
-<p>Linux 打开终端 cd 到 <code>~/.ethereum</code> 目录下.  </p>
+<p>新建 私链数据存放目录 </p>
 </blockquote>
-<p>删除目录下的 文件:<br><code>$ rm -rf *</code></p>
+<p><code>$ mkdir ethereum (可自定义位置 和 名称)</code>  </p>
+<p><code>$ cd ethereum/</code>  </p>
 <p>创建 创世区块文件:</p>
 <p><code>$ cat &gt; genesis.json</code><br>输入:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"nonce"</span>: <span class="string">"0x0000000000000042"</span>,</span><br><span class="line">    <span class="attr">"difficulty"</span>: <span class="string">"0x020000"</span>,</span><br><span class="line">    <span class="attr">"mixhash"</span>: <span class="string">"0x0000000000000000000000000000000000000000000000000000000000000000"</span>,</span><br><span class="line">    <span class="attr">"coinbase"</span>: <span class="string">"0x0000000000000000000000000000000000000000"</span>,</span><br><span class="line">    <span class="attr">"timestamp"</span>: <span class="string">"0x00"</span>,</span><br><span class="line">    <span class="attr">"parentHash"</span>: <span class="string">"0x0000000000000000000000000000000000000000000000000000000000000000"</span>,</span><br><span class="line">    <span class="attr">"extraData"</span>: <span class="string">"0x11bbe8db4e347b4e8c937c1c8370e4b5ed33adb3db69cbdb7a38e1e50b1b82fa"</span>,</span><br><span class="line">    <span class="attr">"gasLimit"</span>: <span class="string">"0x4c4b40"</span>,</span><br><span class="line">    <span class="attr">"config"</span>: &#123;</span><br><span class="line">        <span class="attr">"chainId"</span>: <span class="number">15</span>,</span><br><span class="line">        <span class="attr">"homesteadBlock"</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">"eip155Block"</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">"eip158Block"</span>: <span class="number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"alloc"</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><code>control + C</code>  结束输入  </p>
-<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E7%A7%81%E9%93%BE1.png" alt=""></p>
-<h2 id="初始化区块链"><a href="#初始化区块链" class="headerlink" title="初始化区块链"></a>初始化区块链</h2><p><code>$ geth init genesis.json</code>  </p>
-<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E7%A7%81%E9%93%BE2init.png" alt=""></p>
-<h2 id="启动私有链节点"><a href="#启动私有链节点" class="headerlink" title="启动私有链节点"></a>启动私有链节点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ geth --networkid 10 --rpc --rpcapi &quot;admin,debug,eth,miner,net,personal,shh,txpool,web3&quot; rpcaddr &quot;0.0.0.0&quot; --rpccorsdomain &quot;*&quot; --nodiscover --dev console</span><br></pre></td></tr></table></figure>
-<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E7%A7%81%E9%93%BE3console.png" alt=""></p>
+<p><code>control + C</code>  结束输入,注意最后一行有回车换行符.  </p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E7%A7%81%E9%93%BEcat.png" alt=""></p>
+<h2 id="初始化区块链"><a href="#初始化区块链" class="headerlink" title="初始化区块链"></a>初始化区块链</h2><p><code>$ geth --datadir chainData init genesis.json</code>  </p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E7%A7%81%E9%93%BE2init%5C.png" alt=""></p>
+<h2 id="启动私有链节点"><a href="#启动私有链节点" class="headerlink" title="启动私有链节点"></a>启动私有链节点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ geth --datadir chainData --networkid 10 --rpc --rpcapi &quot;admin,debug,eth,miner,net,personal,shh,txpool,web3&quot; rpcaddr &quot;0.0.0.0&quot; --rpccorsdomain &quot;*&quot; --nodiscover --dev console</span><br></pre></td></tr></table></figure>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E7%A7%81%E9%93%BE3console%5C.png" alt=""></p>
 <blockquote>
+<p>复制 IPC url, 如图所示,用于开启mist钱包私链    </p>
 <p>注意: 如果提示 30303端口被占用,解决方法:</p>
 </blockquote>
 <p>查看占用进程PID<br><code>$ lsof -i:30303</code>   </p>
@@ -42,13 +43,18 @@
 <p><img src="http://p37d7w3w4.bkt.clouddn.com/%E7%A7%81%E9%93%BE5minerstart.png" alt=""> </p>
 <p>可以看到Geth节点终端下, 已经开始挖矿  </p>
 <p><img src="http://p37d7w3w4.bkt.clouddn.com/%E7%A7%81%E9%93%BE6minering.png" alt=""></p>
-<h2 id="打开-Mist-钱包-也能查看-Ether"><a href="#打开-Mist-钱包-也能查看-Ether" class="headerlink" title="打开 Mist 钱包 也能查看 Ether"></a>打开 Mist 钱包 也能查看 Ether</h2><p><img src="http://p37d7w3w4.bkt.clouddn.com/%E7%A7%81%E9%93%BE7wallet.gif" alt=""></p>
+<h2 id="命令行打开-Mist-钱包-也能查看-Ether"><a href="#命令行打开-Mist-钱包-也能查看-Ether" class="headerlink" title="命令行打开 Mist 钱包 也能查看 Ether"></a>命令行打开 Mist 钱包 也能查看 Ether</h2><blockquote>
+<p>直接打开mist钱包会报错,在命令行 加个rpc参数就能打开,Mac系统或者没有<code>ethereumwallet</code>命令的,可以cd到 mist钱包安装路径下 会找到该命令.  </p>
+</blockquote>
+<p><code>$ ethereumwallet --rpc /home/threebody/ethereum/chainData/geth.ipc (刚才复制的IPC url)</code><br><img src="http://p37d7w3w4.bkt.clouddn.com/mist-rpc.png" alt="">  </p>
+<p><img src="http://p37d7w3w4.bkt.clouddn.com/%E7%A7%81%E9%93%BE7wallet.gif" alt=""></p>
 <blockquote>
 <p>停止挖矿   </p>
 </blockquote>
 <p><code>&gt; miner.stop()</code>  </p>
-<hr>
 <blockquote>
+<p>致谢: <strong>健江</strong> 童鞋 把我从 有屎以来,私链搭建 最深的坑中拉出来.</p>
+<hr>
 <p><strong><em>日后随着 学习打怪的不断深入，会解锁其他的高级教程。</em></strong>  </p>
 <h3 id="期待-吗？-那就关注下面-公众号-随时锁定区块链开发学习教程进度-："><a href="#期待-吗？-那就关注下面-公众号-随时锁定区块链开发学习教程进度-：" class="headerlink" title="期待 吗？ 那就关注下面 公众号 随时锁定区块链开发学习教程进度 ：)"></a><strong><em>期待 吗？ 那就关注下面 公众号 随时锁定区块链开发学习教程进度 ：)</em></strong></h3></blockquote>
 </div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/区块链/">区块链</a></li></ul></footer></article><section class="reward"><a class="btn-reward" href="#">关注公众号</a><div class="reward-wrapper clearfix"><img src="/img/wechat.jpg" title="公众号：区块链开发技术共享"><img src="/img/lianhu.jpg" title="公众号：区块链部落"></div></section><div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC8zMzU4MC8xMDEzNQ=="><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2018 Fuyao-Jiang</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

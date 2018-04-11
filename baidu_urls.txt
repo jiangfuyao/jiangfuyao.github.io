@@ -1,3 +1,5 @@
+http://jiangfuyao.com/2018/04/10/golang-实现简单区块链/
+http://jiangfuyao.com/2018/04/09/hello-world/
 http://jiangfuyao.com/2018/03/12/以太坊私链搭建踩坑/
 http://jiangfuyao.com/2018/03/09/20分钟制作基于IPFS去中心化相册Dapp/
 http://jiangfuyao.com/2018/02/27/研究以太坊扩展解决方案/
@@ -16,4 +18,3 @@ http://jiangfuyao.com/2018/01/27/区块链开发-Go语言-数据类型，进制�
 http://jiangfuyao.com/2018/01/27/区块链开发-Go语言-print和变量声明/
 http://jiangfuyao.com/2018/01/26/Ubuntu-区块链开发go语言，Node-js，truffle环境搭建/
 http://jiangfuyao.com/2018/01/26/BlockChain DEV Blog 正式上线,关注区块链开发底层技术/
-http://jiangfuyao.com/2018/01/26/hello-world/
